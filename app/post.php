@@ -13,7 +13,7 @@ class post extends Model
     }
 
     public function parent() {
-    	return $this->belongsTo('App\post', 'id', 'parent_post');
+    	return $this->belongsTo('App\post', 'parent_post', 'id');
     }
 
     public function children() {

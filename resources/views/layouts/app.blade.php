@@ -5,12 +5,24 @@
 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<style>
+			.navbar {
+				margin-bottom: 1.5rem;
+			}
+
 			body {
-				padding-top: 4.5rem;
+				padding-bottom: 1.5rem;
+			}
+
+			.manipulator_btn {
+				margin: 1px;
 			}
 
 			.nav {
 				padding-bottom: 1.5rem;
+				border-left: 1px solid #ddd;
+				border-top: 1px solid #ddd;
+				border-right: 1px solid #ddd;
+				padding-top: 0.5rem;
 			}
 
 			.post-list {
@@ -18,25 +30,26 @@
 				border-bottom: 1px solid #ddd;
 				border-right: 1px solid #ddd;
 				background: #fff;
-				padding-top: 5px;
-				padding-bottom: 5px;
+
+				padding-top: 10px;
+				padding-bottom: 10px;
 				
 			}
 
 			.post {
 				border-left: 1px solid #ddd;
 				border-bottom: 1px solid #ddd;
-				background: #fff;
 				padding-top: 5px;
 				padding-bottom: 5px;
+				border-radius: 0px 0px 0px 3px;
 			}
 
 			.author {
 				border-right: 1px solid #ddd;
 				border-bottom: 1px solid #ddd;
-				background: #fff;
 				padding-top: 5px;
 				padding-bottom: 5px;
+				border-radius: 0px 0px 3px 0px;
 			}
 
 			.post-row {
@@ -53,7 +66,7 @@
 	</head>
 
 	<body>
-		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">

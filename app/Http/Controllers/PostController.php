@@ -23,21 +23,8 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-        //dd($request);
         $post = new post;
         $post->author_id = Auth::user()->id;
         $post->parent_post = $request->post_id;
@@ -51,7 +38,18 @@ class PostController extends Controller
         $old_post->save();
         $old_post->timestamps = true;
 
-        return redirect('/post/' . $request->post_id);
+        return redirect('/post/' . $request->post_id . '#p' . $post->id);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store()
+    {
+        
     }
 
     /**

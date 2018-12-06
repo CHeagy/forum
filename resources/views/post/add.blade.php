@@ -16,8 +16,8 @@
 						<textarea name="text" class="form-control"></textarea>
 						<br />
 						<div class="float-left"><input type="submit" class="btn btn-outline-primary" value="Submit" /></div>
-						<div class="float-right"><button class="btn btn-outline-danger">Cancel</button></div>
 					</form>
+					<div class="float-right"><a href="/post/{{ $post->id }}"><button class="btn btn-outline-danger">Cancel</button></a></div>
 				</div>
 				<div class="col-3"></div>
 		</div>
