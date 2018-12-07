@@ -8,7 +8,11 @@
 		<div class="col-10">
 		<a href="/">Home</a> / <a href="/category/{{ $forum->parent_cat }}">{{ $forum->category->name }}</a> / {{ $forum->name }}
 		</div>
-		<div class="col-2 float-right"><a href="/forum/{{$forum->id}}/new"><button class="btn btn-outline-primary">New Post</button></a></div>
+		<div class="col-2 float-right">
+			@if (Auth::check())
+			<a href="/forum/{{$forum->id}}/new"><button class="btn btn-outline-primary">New Post</button></a>
+			@endif
+		</div>
 	</div>
 
 
@@ -17,7 +21,7 @@
 		<div class="row post-row rounded-bottom">
 				<div class="col-2"></div>
 				<div class="col-5 post alert-success text-left">
-					@if (Auth::user()->rank >= 3)
+					@if (Auth::check() && Auth::user()->rank >= 3)
 					<a onclick="return confirmDelete()" href="/post/{{$post->id}}/delete" class="manipulator_btn btn btn-outline-danger">X</a> 
 
 					@if($post->locked)
@@ -45,7 +49,7 @@
 		<div class="row post-row rounded-bottom">
 				<div class="col-2"></div>
 				<div class="col-5 post border-info text-left">
-					@if (Auth::user()->rank >= 3)
+					@if (Auth::check() && Auth::user()->rank >= 3)
 					<a onclick="return confirmDelete()" href="/post/{{$post->id}}/delete" class="manipulator_btn btn btn-outline-danger">X</a> 
 					
 					@if($post->locked)

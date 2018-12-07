@@ -11,11 +11,13 @@
 		<div class="col-2">
 			@if ($post->locked)
 			<button class="btn float-right btn-outline-secondary" disabled>Locked</button>
-				@if (Auth::user()->rank >= 3)
+				@if (Auth::check() && Auth::user()->rank >= 3)
 				<a href="/post/{{ $post->id }}/add"><button class="btn btn-outline-primary float-right">Post Reply</button></a>
 				@endif
 			@else
-			<a href="/post/{{ $post->id }}/add"><button class="btn btn-outline-primary float-right">Post Reply</button></a>
+				@if (Auth::check())
+				<a href="/post/{{ $post->id }}/add"><button class="btn btn-outline-primary float-right">Post Reply</button></a>
+				@endif
 			@endif
 		</div>
 	</div>

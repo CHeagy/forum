@@ -25,7 +25,7 @@
 							@endif
 						</div>
 					</form>
-					<div class="float-right"><a href="/post/{{ $post->id }}"><button class="btn btn-outline-danger">Cancel</button></a></div>
+					<div class="float-right"><a href="/post/{{ ($post->parent_post == 0) ? $post->id : $post->parent_post }}"><button class="btn btn-outline-danger">Cancel</button></a></div>
 				</div>
 				<div class="col-3"></div>
 		</div>

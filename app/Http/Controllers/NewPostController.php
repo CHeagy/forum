@@ -30,6 +30,9 @@ class NewPostController extends Controller
     }
 
     public function index(forum $forum) {
+        if (!Auth::check())
+            return redirect(route('login'));
+
     	return view('post.new', compact('forum'));
     }
 }

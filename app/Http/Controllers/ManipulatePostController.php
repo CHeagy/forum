@@ -56,7 +56,20 @@ class ManipulatePostController extends Controller
     }
 
     public function Index(post $post) {
-    	return view('post.edit', compact('post'));
+    	if (!Auth::check())
+			return redirect(route('login'));
+
+		$view = view('post.edit', compact('post'));
+
+		if($post->author_id == Auth::user()->id) {
+			$r = $view;
+		} else if(Auth::user()->rank >= 3) {
+			$r = $view;
+		} else {
+			$r = back();		
+		}
+
+    	return $r;
     }
 
     public function Sticky(post $post) {

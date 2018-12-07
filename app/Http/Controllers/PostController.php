@@ -63,6 +63,12 @@ class PostController extends Controller
      */
     public function show(post $post)
     {
+        if (!Auth::check())
+            return redirect(route('login'));
+
+        if(($post->locked) && !(Auth::user()->rank >= 3))
+            return back();
+
         return view('post.add', compact('post'));
     }
 
