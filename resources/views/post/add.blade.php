@@ -13,7 +13,7 @@
 						<br />
 						{{$post->title}}
 						<br /><br />
-						<textarea name="text" class="form-control"></textarea>
+						<textarea name="text" class="form-control" autofocus></textarea>
 						<br />
 						<div class="float-left"><input type="submit" class="btn btn-outline-primary" value="Submit" /></div>
 					</form>

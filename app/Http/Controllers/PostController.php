@@ -15,6 +15,7 @@ class PostController extends Controller
      */
     public function index(post $post)
     {
+        $post->children = \App\post::where('parent_post', $post->id)->paginate(15);
         return view('post', compact('post'));
     }
 
@@ -34,11 +35,13 @@ class PostController extends Controller
         $old_post = post::findOrFail($request->post_id);
         $old_post->timestamps = false;
         $old_post->thread_updated_at = date('Y-m-d H:i:s');
+        $old_post->thread_updated_by = Auth::user()->id;
         $old_post->updated_at = $old_post->updated_at;
         $old_post->save();
         $old_post->timestamps = true;
+        $page = intval(ceil(count($old_post->children)/15));
 
-        return redirect('/post/' . $request->post_id . '#p' . $post->id);
+        return redirect('/post/' . $request->post_id . '?page=' . $page . '#p' . $post->id);
     }
 
     /**

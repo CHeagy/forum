@@ -27,4 +27,8 @@ class post extends Model
     public function last_author() {
         return $this->belongsTo('App\User', 'thread_updated_by', 'id');
     }
+
+    public function editor() {
+        return $this->belongsTo('App\User', 'post_updated_by', 'id');
+    }
 }

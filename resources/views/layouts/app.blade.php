@@ -102,4 +102,10 @@
 
 		</main>
 	</body>
+	<script type="text/javascript">
+	function confirmDelete() {
+		document.activeElement.blur();
+		return confirm("Are you sure you want to delete this post?");
+	}
+	</script>
 </html>

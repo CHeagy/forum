@@ -11,6 +11,9 @@
 		<div class="col-2">
 			@if ($post->locked)
 			<button class="btn float-right btn-outline-secondary" disabled>Locked</button>
+				@if (Auth::user()->rank >= 3)
+				<a href="/post/{{ $post->id }}/add"><button class="btn btn-outline-primary float-right">Post Reply</button></a>
+				@endif
 			@else
 			<a href="/post/{{ $post->id }}/add"><button class="btn btn-outline-primary float-right">Post Reply</button></a>
 			@endif
@@ -18,22 +21,28 @@
 	</div>
 
 	<div class="row">
-		<div class="col-10"><p class="h4">{{ $post->title }}</p></div>
+		<div class="col-10">
+			{{ $post->children->links() }}
+			<p class="h4">{{ $post->title }}</p>
+		</div>
 		<div class="col-2 float-right"></div>
 	</div>
 
+	@if (!isset($_GET['page']) || $_GET['page'] == 1)
 	<div class="row post-list rounded-bottom border-info" id="p{{$post->id}}">
 		<div class="col-2">
 			<a href="/user/{{ $post->author->id }}">{{ $post->author->name }}</a>
+			<br />
+			<small>Posts: {{ count($post->author->posts) }}</small>
 			<br />
 			<small>Joined <?=date('M jS, Y', strtotime($post->author->created_at))?></small>
 		</div>
 		<div class="col-8">
 			<small class="text-muted">Posted {{ date('M jS, Y', strtotime($post->created_at)) }}</small>
 			@if ($post->created_at != $post->updated_at)
-			<br /><small class="text-muted">Last modified by {{ $post->author->name }} on {{ $post->updated_at }}</small>
+			<br /><small class="text-muted">Last modified by {{ $post->editor->name }} on {{ $post->updated_at }}</small>
 			@endif
-			<p>{{ $post->post_text }}</p>
+			<p>{!! nl2br(e($post->post_text)) !!}</p>
 		</div>
 		<div class="col-2">
 			@if (Auth::check())
@@ -43,11 +52,12 @@
 					<a href="/post/{{$post->id}}/lock"><button class="manipulator_btn btn {{ ($post->locked) ? "btn-secondary" : "btn-outline-secondary" }} float-right">L</button></a>
 					@endif
 					<a href="/post/{{$post->id}}/edit"><button class="manipulator_btn btn btn-outline-primary float-right">E</button></a> 
-					<a href="/post/{{$post->id}}/delete"><button class="manipulator_btn btn btn-outline-danger float-right">X</button></a>
+					<a onclick="return confirmDelete()" href="/post/{{$post->id}}/delete"><button class="manipulator_btn btn btn-outline-danger float-right">X</button></a>
 				@endif
 			@endif
 		</div>
 	</div>
+	@endif
 
 	@foreach ($post->children as $child)
 	<div class="row post-list rounded-bottom border-info" id="p{{$child->id}}">
@@ -55,22 +65,24 @@
 		<div class="col-2">
 			<a href="/user/{{ $child->author->id }}">{{ $child->author->name }}</a>
 			<br />
+			<small>Posts: {{ count($child->author->posts) }}</small>
+			<br />
 			<small>Joined <?=date('M jS, Y', strtotime($child->author->created_at))?></small>
 		</div>
 		<div class="col-8">
 
 			<small class="text-muted">Posted {{ date('M jS, Y', strtotime($child->created_at)) }}</small>
 			@if ($child->created_at != $child->updated_at)
-			<br /><small class="text-muted">Last modified by {{ $child->author->name }} on {{ $child->updated_at }}</small>
+			<br /><small class="text-muted">Last modified by {{ $child->editor->name }} on {{ $child->updated_at }}</small>
 			@endif
 
-			<p>{{ $child->post_text }}</p>
+			<p>{!! nl2br(e($child->post_text)) !!}</p>
 		</div>
 		<div class="col-2">
 			@if (Auth::check())
 				@if ((Auth::user()->id == $child->author_id && (!$child->parent->locked)) || Auth::user()->rank >= 3)
 					<a href="/post/{{$child->id}}/edit"><button class="manipulator_btn btn btn-outline-primary float-right">E</button></a> 
-					<a href="/post/{{$child->id}}/delete"><button class="manipulator_btn btn btn-outline-danger float-right">X</button></a>
+					<a onclick="return confirmDelete()" href="/post/{{$child->id}}/delete"><button class="manipulator_btn btn btn-outline-danger float-right">X</button></a>
 				@endif
 			@endif
 		</div>
@@ -78,7 +90,6 @@
 	@endforeach
 
 </div>
-
 @endsection
 
 
