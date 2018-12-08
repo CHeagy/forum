@@ -69,12 +69,14 @@
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
+					<li class="nav-item">
 						<a class="nav-link" href="/">Home</a>
 					</li>
+					@if (Auth::check())
 					<li class="nav-item">
-						<a class="nav-link disabled" href="/account">Account</a>
+						<a class="nav-link" href="/account">{{Auth::user()->name}}</a>
 					</li>
+					@endif
 				</ul>
 				<div class="mt-2 mt-md-0">
 					@if (Auth::check())

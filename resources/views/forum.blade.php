@@ -37,8 +37,8 @@
 					@if($post->locked)
 					&#128274;
 					@endif
-					<br /><small>by <a href="/user/{{$post->author_id}}">{{$post->author->name}}</a> | {{ count($post->children) }}  replies</small></div>
-				<div class="col-3 author alert-success text-right"><small>Last updated by <a href="/user/{{$post->last_author->id}}">{{$post->last_author->name}}</a><br />on {{ date('M jS, Y @ H:i', strtotime($post->thread_updated_at)) }}</small></div>
+					<br /><small>by <a href="/user/{{ $post->author->id }}"><span style="color: #{{$post->author->display_rank->color}}">{{ $post->author->name }}</span></a> | {{ count($post->children) }}  replies</small></div>
+				<div class="col-3 author alert-success text-right"><small>Last updated by <a href="/user/{{ $post->last_author->id }}"><span style="color: #{{$post->last_author->display_rank->color}}">{{ $post->last_author->name }}</span></a><br />on {{ date('M jS, Y @ H:i', strtotime($post->thread_updated_at)) }}</small></div>
 				<div class="col-2"></div>
 		</div>
 		@endif
@@ -65,8 +65,8 @@
 					@if($post->locked)
 					&#128274;
 					@endif
-					<br /><small>by <a href="/user/{{$post->author_id}}">{{$post->author->name}}</a> | {{ count($post->children) }}  replies</small></div>
-				<div class="col-3 author border-info text-right"><small>Last updated by <a href="/user/{{$post->last_author_id}}">{{$post->last_author->name}}</a><br />on {{ date('M jS, Y @ H:i', strtotime($post->thread_updated_at)) }}</small></div>
+					<br /><small>by <a href="/user/{{ $post->author->id }}"><span style="color: #{{$post->author->display_rank->color}}">{{ $post->author->name }}</span></a> | {{ count($post->children) }}  replies</small></div>
+				<div class="col-3 author border-info text-right"><small>Last updated by <a href="/user/{{ $post->last_author->id }}"><span style="color: #{{$post->last_author->display_rank->color}}">{{ $post->last_author->name }}</span></a><br />on {{ date('M jS, Y @ H:i', strtotime($post->thread_updated_at)) }}</small></div>
 				<div class="col-2"></div>
 		</div>
 		@endif

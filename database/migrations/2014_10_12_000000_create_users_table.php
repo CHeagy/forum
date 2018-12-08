@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedinteger('rank')->default('1')->nullable(false);
+            $table->unsignedinteger('displayed_rank')->default('1')->nullable(false);
         });
     }
 

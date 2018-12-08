@@ -31,3 +31,5 @@ Route::post('/post/{post}/edit', 'ManipulatePostController@Store');
 Route::get('/post/{post}/delete', 'ManipulatePostController@Destroy');
 Route::get('/post/{post}/sticky', 'ManipulatePostController@Sticky');
 Route::get('/post/{post}/lock', 'ManipulatePostController@Lock');
+Route::get('/account', 'AccountController@Index');
+Route::post('/account', 'AccountController@Store');

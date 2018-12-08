@@ -33,7 +33,7 @@
 	@if (!isset($_GET['page']) || $_GET['page'] == 1)
 	<div class="row post-list rounded-bottom border-info" id="p{{$post->id}}">
 		<div class="col-2">
-			<a href="/user/{{ $post->author->id }}">{{ $post->author->name }}</a>
+			<a href="/user/{{ $post->author->id }}"><span style="color: #{{$post->author->display_rank->color}}">{{ $post->author->name }}</span></a>
 			<br />
 			<small>Posts: {{ count($post->author->posts) }}</small>
 			<br />
@@ -65,7 +65,7 @@
 	<div class="row post-list rounded-bottom border-info" id="p{{$child->id}}">
 		<hr />
 		<div class="col-2">
-			<a href="/user/{{ $child->author->id }}">{{ $child->author->name }}</a>
+			<a href="/user/{{ $child->author->id }}"><span style="color: #{{$child->author->display_rank->color}}">{{ $child->author->name }}</span></a>
 			<br />
 			<small>Posts: {{ count($child->author->posts) }}</small>
 			<br />

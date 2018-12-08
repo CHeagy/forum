@@ -31,4 +31,12 @@ class User extends Authenticatable
     public function posts() {
         return $this->hasMany('App\post', 'author_id', 'id');
     }
+
+    public function rank() {
+        return $this->hasOne('App\rank', 'id', 'rank');
+    }
+
+    public function display_rank() {
+        return $this->hasOne('App\rank', 'id', 'displayed_rank');
+    }
 }
