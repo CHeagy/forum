@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->unsignedinteger('rank')->default('1')->nullable(false);
             $table->unsignedinteger('displayed_rank')->default('1')->nullable(false);
+            $table->string('website')->nullable();
+            $table->string('location')->nullable();
         });
     }
 

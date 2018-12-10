@@ -37,7 +37,7 @@
 			<br />
 			<small>Posts: {{ count($post->author->posts) }}</small>
 			<br />
-			<small>Joined <?=date('M jS, Y', strtotime($post->author->created_at))?></small>
+			<small>Joined {{date('M jS, Y', strtotime($post->author->created_at))}}</small>
 		</div>
 		<div class="col-8">
 			<small class="text-muted">Posted {{ date('M jS, Y', strtotime($post->created_at)) }}</small>
@@ -69,7 +69,7 @@
 			<br />
 			<small>Posts: {{ count($child->author->posts) }}</small>
 			<br />
-			<small>Joined <?=date('M jS, Y', strtotime($child->author->created_at))?></small>
+			<small>Joined {{date('M jS, Y', strtotime($child->author->created_at))}}</small>
 		</div>
 		<div class="col-8">
 

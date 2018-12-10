@@ -33,3 +33,4 @@ Route::get('/post/{post}/sticky', 'ManipulatePostController@Sticky');
 Route::get('/post/{post}/lock', 'ManipulatePostController@Lock');
 Route::get('/account', 'AccountController@Index');
 Route::post('/account', 'AccountController@Store');
+Route::get('/user/{user}', 'UserProfile');

@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Hash;
 class AccountController extends Controller
 {
     public function Index() {
-    	return view('account.home');
+    	$posts = post::where('author_id', Auth::user()->id)
+    	return view('account.home')->withModel($posts);
     }
 
     public function Store(Request $request) {
     	$validator = Validator::make($request->all(), [
-    		'email' => 'confirmed|nullable|email',
+    		'email' => 'confirmed|nullable|email|unique:users',
     		'new_password' => 'nullable|confirmed|min:6|max:255'
     	]);
 
@@ -26,9 +27,6 @@ class AccountController extends Controller
 
 	    	$validator->errors()->add('old_password', 'Your current password is incorrect.');
     	}
-
-
-    	//dd(print_r($validator->errors()->all(), true) . " - " . $validator->fails() . " - " . print_r($validator->errors()->all(), true));
     	
     	if ($validator->errors()->any()) {
             return redirect('/account')
@@ -44,6 +42,9 @@ class AccountController extends Controller
         if(isset($request->new_password)) {
         	$user->password = Hash::make($request->new_password);
         }
+
+        $user->website = $request->website;
+        $user->location = $request->location;
 
         $user->save();
 
