@@ -38,7 +38,7 @@
 			<hr />
 			<div class="row">
 				<div class="col-6">
-					@foreach (App\post::all()->where('author_id', Auth::user()->id)->sortByDesc('created_at') as $post)
+					@foreach (App\post::all()->where('author_id', $user->id)->sortByDesc('created_at') as $post)
 						@if (!isset($post->parent))
 							<div class="">
 								<a href="/post/{{$post->id}}">{{$post->title}}</a><br />
@@ -49,7 +49,7 @@
 					@endforeach
 				</div>
 				<div class="col-6">
-					@foreach (App\post::all()->where('author_id', Auth::user()->id)->sortByDesc('created_at') as $post)
+					@foreach (App\post::all()->where('author_id', $user->id)->sortByDesc('created_at') as $post)
 						@if (isset($post->parent))
 							<div class="">
 								<a href="/post/{{$post->parent->id}}">{{$post->parent->title}}</a><br />

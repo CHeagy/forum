@@ -19,9 +19,11 @@
 						<br />
 						<div class="float-left">
 							<input type="submit" class="btn btn-outline-primary" value="Submit" />
-							@if (Auth::user()->rank >= 3)
-							<input type="checkbox" {{ ($post->stickied) ? "checked" : "" }} name="sticky" id="sticky"> <label for="sticky">Sticky</label>
-							<input type="checkbox" {{ ($post->locked) ? "checked" : "" }} name="lock" id="lock"> <label for="lock">Lock</label>
+							@if ($post->parent_post == NULL)
+								@if (Auth::user()->power_rank->power >= 500)
+								<input type="checkbox" {{ ($post->stickied) ? "checked" : "" }} name="sticky" id="sticky"> <label for="sticky">Sticky</label>
+								<input type="checkbox" {{ ($post->locked) ? "checked" : "" }} name="lock" id="lock"> <label for="lock">Lock</label>
+								@endif
 							@endif
 						</div>
 					</form>

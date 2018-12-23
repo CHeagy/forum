@@ -32,7 +32,7 @@ class User extends Authenticatable
         return $this->hasMany('App\post', 'author_id', 'id');
     }
 
-    public function rank() {
+    public function power_rank() {
         return $this->hasOne('App\rank', 'id', 'rank');
     }
 

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 class AccountController extends Controller
 {
     public function Index() {
-    	$posts = post::where('author_id', Auth::user()->id)
+    	$posts = post::where('author_id', Auth::user()->id);
     	return view('account.home')->withModel($posts);
     }
 
